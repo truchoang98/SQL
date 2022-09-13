@@ -71,15 +71,17 @@ INSERT INTO usa_states_covid19_data VALUES (50,"Vermont", 140740, 715, 137920, 2
 SELECT state FROM usa_states_covid19_data
 WHERE population > 1000000 AND total_deaths < 10000; 
 
---Which state has the highest amount of total cases
+--Which state has the highest amount of total cases?
 SELECT state FROM usa_states_covid19_data WHERE total_cases = (SELECT MAX(total_cases) from  usa_states_covid19_data);
 
---Create a table which groups states that have more than 100 thousand active cases as a red zone, more than 50 thousand active cases as a yellow zone, and less than 10 thousand active cases as a green zone.
+--Create a table which groups states that have more than 100 thousand active cases as a red zone, 
+more than 50 thousand active cases as a orange zone, greater than 10 thousand active cases as a yellow zone, and 
+anything less than that as a green zone. 
 SELECT COUNT(*) AS "Number_Of_States", 
     CASE
         WHEN active_cases > 100000 THEN "Red_Zone"
         WHEN active_cases > 50000 THEN "Orange_Zone"
-        WHEN active_cases < 10000 THEN "Yellow_Zone"
+        WHEN active_cases > 10000 THEN "Yellow_Zone"
         ELSE "Green_Zone" 
         END AS "Danger_Zones"
     FROM usa_states_covid19_data
