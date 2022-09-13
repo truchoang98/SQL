@@ -1,0 +1,88 @@
+--Create a US COVID-19 database 
+
+/* 
+USA States COVID-19 Data, Last Updated September 12, 2022
+Data adapted from 
+https://www.worldometers.info/coronavirus/country/us/
+*/
+
+CREATE TABLE usa_states_covid19_data 
+(id INTEGER PRIMARY KEY, 
+state TEXT, 
+total_cases INTEGER, 
+total_deaths INTEGER, 
+total_recovered INTEGER, 
+active_cases INTEGER, 
+total_tests INTEGER, 
+population INTEGER); 
+
+INSERT INTO usa_states_covid19_data VALUES (1,"California", 11161843, 95490, 10602688, 463665, 183300783, 39512223); 
+INSERT INTO usa_states_covid19_data VALUES (2,"Texas", 7867631, 90860, 231148, 271336, 71159193, 28995881); 
+INSERT INTO usa_states_covid19_data VALUES (3,"Florida", 7113909, 80460, 6872464, 160985, 62664535, 21477737); 
+INSERT INTO usa_states_covid19_data VALUES (4,"New_York", 6201437, 71730, 6084271, 45436, 118658695, 19453561); 
+INSERT INTO usa_states_covid19_data VALUES (5,"Illinois", 3716318, 39445, 3564950, 111923, 57898053, 12671821); 
+INSERT INTO usa_states_covid19_data VALUES (6,"Pennsylvania", 303811, 46831, 3113482, 42498, 28100032, 12801989); 
+INSERT INTO usa_states_covid19_data VALUES (7,"North_Carolina", 3141302, 26365, 3079705, 35232, 26356209, 10488084); 
+INSERT INTO usa_states_covid19_data VALUES (8,"Ohio", 3096557, 39576, 2985915, 71066, 22345248, 11689100); 
+INSERT INTO usa_states_covid19_data VALUES (9,"Georgia", 2883318, 39875, 2769212, 74231, 26814188, 10617423); 
+INSERT INTO usa_states_covid19_data VALUES (10,"Michigan", 2786213, 38121, 2677119, 70973, 26843215, 9986857); 
+INSERT INTO usa_states_covid19_data VALUES (11,"New_Jersey", 2698100, 34627, 2513590, 149883, 31135813, 8882190); 
+INSERT INTO usa_states_covid19_data VALUES (12,"Tennessee", 2316764, 27537, 2268748, 20479, 13725033, 6829174); 
+INSERT INTO usa_states_covid19_data VALUES (13,"Arizona", 2258040, 31162, 2200798, 26080, 20720327, 7278717); 
+INSERT INTO usa_states_covid19_data VALUES (14,"Virginia", 2060595, 21611, 1974805, 64179, 19172533, 8535519); 
+INSERT INTO usa_states_covid19_data VALUES (15,"Massachusetts", 2021331, 21536, 1987460, 12335, 47257622, 6892503); 
+INSERT INTO usa_states_covid19_data VALUES (16,"Indiana", 1908325, 24549, 1701391, 182385, 20899918, 6732219); 
+INSERT INTO usa_states_covid19_data VALUES (17,"Wisconsin", 1843251, 15120, 1787943, 40188, 17760241, 5822434); 
+INSERT INTO usa_states_covid19_data VALUES (18,"Washington", 1793565, 14122, 1746388, 33055, 17264083, 7614893); 
+INSERT INTO usa_states_covid19_data VALUES (19,"South_Carolina", 1687640, 18299, 1559359, 109982, 17515470, 5148714); 
+INSERT INTO usa_states_covid19_data VALUES (20,"Minnesota", 1645653, 13509, 1625704, 6440, 23305101, 5639632);
+INSERT INTO usa_states_covid19_data VALUES (21,"Colorado", 1639422, 13920, 1583407, 42095, 19984063, 5758736); 
+INSERT INTO usa_states_covid19_data VALUES (22,"Missouri", 1618991, 21335, 1544810, 52846, 14632189, 6137428); 
+INSERT INTO usa_states_covid19_data VALUES (23,"Kentucky", 1556660, 16822, 1462559, 77279, 13675281, 4467673); 
+INSERT INTO usa_states_covid19_data VALUES (24,"Alabama", 1505814, 20268, 1342926, 142620, 8226056, 4903185); 
+INSERT INTO usa_states_covid19_data VALUES (25,"Louisiana", 1442885, 17923, 1389124, 35838, 16719238, 4648794);
+INSERT INTO usa_states_covid19_data VALUES (26,"Maryland", 1233088, 15257, 1184153, 33678, 22908230, 6045680);
+INSERT INTO usa_states_covid19_data VALUES (27,"Oklahoma", 1179931, 14765, 1146483, 18683, 5473577, 3956971); 
+INSERT INTO usa_states_covid19_data VALUES (28,"Utah", 1032129, 4989, 1017831, 9309, 9406861, 3205958); 
+INSERT INTO usa_states_covid19_data VALUES (29,"Iowa", 970009, 9968, 917781, 42260, 8492575, 3155070); 
+INSERT INTO usa_states_covid19_data VALUES (30,"Arkansas", 941464, 11961, 917979, 11524, 7464944, 3017804); 
+INSERT INTO usa_states_covid19_data VALUES (31,"Mississippi", 918874, 12821, 877963, 28090, 7063623, 2976149);
+INSERT INTO usa_states_covid19_data VALUES (32,"Oregon", 883368, 8471, 839663, 35234, 12508506, 4217737);
+INSERT INTO usa_states_covid19_data VALUES (33,"Connecticut", 880603, 11299, 848290, 21014, 15609081, 3565287 ); 
+INSERT INTO usa_states_covid19_data VALUES (34,"Kansas", 868911, 9027, 833465, 26419, 5771365, 2913314); 
+INSERT INTO usa_states_covid19_data VALUES (35,"Nevada", 843526, 11417, 794099, 38010, 6875532, 3080156); 
+INSERT INTO usa_states_covid19_data VALUES (36,"New_Mexico", 613896, 8483, 584326, 21087, 7850950, 2096829); 
+INSERT INTO usa_states_covid19_data VALUES (37,"West_Virginia", 590441, 7322, 580061, 3058, 6810668, 1792147);
+INSERT INTO usa_states_covid19_data VALUES (38,"Nebraska", 533046, 4488, 517218, 11340, 5506012, 2846355);
+INSERT INTO usa_states_covid19_data VALUES (39,"Idaho", 490946, 5125, 477120, 8701, 3125717, 1787065); 
+INSERT INTO usa_states_covid19_data VALUES (40,"Rhode_Island", 420175, 3652, 410875, 5648, 8285215, 1059361); 
+INSERT INTO usa_states_covid19_data VALUES (41,"New_Hampshire", 345777, 2670, 341064, 2043, 4845153, 1359711); 
+INSERT INTO usa_states_covid19_data VALUES (42,"Hawaii", 340729, 1655, 330711, 8363, 4101166, 1415872); 
+INSERT INTO usa_states_covid19_data VALUES (43,"Montana", 306709, 3509, 301638, 1562, 2789012, 1068778);
+INSERT INTO usa_states_covid19_data VALUES (44,"Delaware", 304393, 3080, 295189, 6124, 1026007, 973764);
+INSERT INTO usa_states_covid19_data VALUES (45,"Maine", 284881, 2551, 275884, 6446, 5609563, 1344212); 
+INSERT INTO usa_states_covid19_data VALUES (46,"Alaska", 280767, 1304, 273911, 5552, 4263487, 731545); 
+INSERT INTO usa_states_covid19_data VALUES (47,"North_Dakota", 266273, 2354, 262163, 1756, 618121, 762062); 
+INSERT INTO usa_states_covid19_data VALUES (48,"South_Dakota", 258510, 3002, 254864, 644, 2309128, 884659); 
+INSERT INTO usa_states_covid19_data VALUES (49,"Wyoming", 175290, 1884, 172329, 1077, 1501160, 2593757);
+INSERT INTO usa_states_covid19_data VALUES (50,"Vermont", 140740, 715, 137920, 2105, 4077323, 6534287);
+
+--Which states have a population greater than 1 million and a total death count of less than 10 thousand?
+SELECT state FROM usa_states_covid19_data
+WHERE population > 1000000 AND total_deaths < 10000; 
+
+--Which state has the highest amount of total cases
+SELECT state FROM usa_states_covid19_data WHERE total_cases = (SELECT MAX(total_cases) from  usa_states_covid19_data);
+
+--Create a table which groups states that have more than 100 thousand active cases as a red zone, more than 50 thousand active cases as a yellow zone, and less than 10 thousand active cases as a green zone.
+SELECT COUNT(*) AS "Number_Of_States", 
+    CASE
+        WHEN active_cases > 100000 THEN "Red_Zone"
+        WHEN active_cases > 50000 THEN "Orange_Zone"
+        WHEN active_cases < 10000 THEN "Yellow_Zone"
+        ELSE "Green_Zone" 
+        END AS "Danger_Zones"
+    FROM usa_states_covid19_data
+    GROUP BY "Danger_Zones"; 
+    
+    
