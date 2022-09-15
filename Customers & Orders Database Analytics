@@ -1,0 +1,40 @@
+--In this SQL, I am querying a database that contains information about customers and their orders. 
+
+--1. How many orders were placed in January?
+SELECT COUNT(orderid) FROM BIT_DB.JanSales;
+
+--2. How many of those orders were for an iPhone?
+SELECT COUNT (orderid) FROM BIT_DB.JanSales 
+WHERE Product = "iPhone"; 
+
+--3. Select the customer account numbers for all the orders that were placed in February. 
+SELECT BIT_DB.customers.acctnum 
+FROM BIT_DB.customers
+JOIN BIT_DB.FebSales
+ON BIT_DB.customers.order_id = BIT_DB.FebSales.orderID; 
+
+--4. Which product was the cheapest one sold in January, and what was the price?
+SELECT BIT_DB.JanSales.Product, BIT_DB.JanSales.price
+FROM BIT_DB.JanSales
+WHERE (SELECT MIN(price)
+FROM BIT_DB.JanSales)
+LIMIT 1; 
+
+--5. What is the total revenue for each product sold in January?
+SELECT BIT_DB.JanSales.Product, SUM(Quantity * price) AS Revenue
+FROM BIT_DB.JanSales
+GROUP BY BIT_DB.JanSales.Product; 
+
+--6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, 
+how many of each were sold, and what was the total revenue?
+SELECT BIT_DB.FebSales.Product, BIT_DB.FebSales.Quantity, SUM(Quantity * price) AS Revenue
+FROM BIT_DB.FebSales 
+WHERE location = "548 Lincoln St, Seattle, WA 98101"; 
+
+--7. How many customers ordered more than 2 products at a time, 
+and what was the average amount spent for those customers?
+SELECT COUNT(Cust.acctnum), AVG(Quantity * price) 
+FROM BIT_DB.FebSales Feb
+JOIN BIT_DB.customers Cust
+ON Feb.orderid = Cust.order_id
+WHERE Feb.Quantity > 2; 
