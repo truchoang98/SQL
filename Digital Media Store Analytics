@@ -1,0 +1,99 @@
+--In this SQL, I am querying a Digital Media Store database that contains information about customers, employees, invoices, albums, and playlists.
+
+--1. Show Customers (their full names, customer ID, and country) who are not in the US.
+SELECT CustomerId, FirstName, LastName, Country 
+FROM chinook.customers
+WHERE Country != 'USA';
+
+--2. Show only the Customers from Brazil.
+SELECT CustomerId, FirstName, LastName, Country 
+FROM chinook.customers
+WHERE Country = 'Brazil'; 
+
+--3. Find the Invoices of customers who are from Brazil. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.
+SELECT customers.FirstName, customers.LastName, invoices.InvoiceId, invoices.InvoiceDate, invoices.BillingCountry 
+FROM chinook.customers 
+JOIN chinook.invoices 
+ON chinook.customers.CustomerId = chinook.invoices.InvoiceId
+WHERE invoices.BillingCountry = 'Brazil'; 
+
+--4. Show the Employees who are Sales Agents.
+SELECT FirstName, LastName
+FROM chinook.employees
+WHERE Title LIKE '%Sales%'; 
+
+--5. Find a unique/distinct list of billing countries from the Invoice table.
+SELECT distinct BillingCountry
+FROM chinook.invoices; 
+
+--6. Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.
+SELECT employees.FirstName, employees.LastName, invoices.InvoiceId
+FROM chinook.employees
+JOIN chinook.customers 
+ON customers.SupportRepId = employees.EmployeeId
+JOIN chinook.invoices
+ON chinook.customers.CustomerId = chinook.invoices.CustomerId;
+
+--7. Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers.
+SELECT employees.FirstName, employees.LastName, customers.FirstName, customers.LastName, customers.Country, invoices.total
+FROM chinook.employees
+JOIN chinook.customers 
+ON customers.SupportRepId = employees.EmployeeId
+JOIN chinook.invoices
+ON chinook.customers.CustomerId = chinook.invoices.CustomerId;
+
+--8. How many Invoices were there in 2009?
+SELECT COUNT(*) 
+FROM chinook.invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'; 
+
+--9. What are the total sales for 2009?
+SELECT SUM(Total)
+FROM chinook.invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'; 
+
+--10. Write a query that includes the purchased track name with each invoice line item.
+SELECT tracks.Name, invoice_items.InvoiceLineId
+FROM chinook.invoice_items
+JOIN chinook.tracks
+ON invoice_items.TrackId = tracks.trackid; 
+
+--11. Write a query that includes the purchased track name AND artist name with each invoice line item.
+SELECT tracks.Name, tracks.Composer, invoice_items.InvoiceLineId
+FROM chinook.invoice_items
+JOIN chinook.tracks
+ON invoice_items.TrackId = tracks.trackid;
+
+--12. Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.
+SELECT tracks.name, albums.title, media_types.Name, genres.Name
+FROM chinook.tracks
+JOIN chinook.albums
+ON tracks.AlbumId = albums.AlbumId
+JOIN chinook.media_types
+ON tracks.MediaTypeId = media_types.MediaTypeId
+JOIN chinook.genres
+ON tracks.GenreId = genres.GenreId; 
+
+--13. Show the total sales made by each sales agent.
+SELECT employees.FirstName, employees.LastName, SUM(invoices.total) AS 'Total Sales'
+FROM chinook.employees
+JOIN chinook.customers
+ON customers.SupportRepId = employees.EmployeeId
+JOIN chinook.invoices 
+ON invoices.CustomerId = customers.CustomerId
+WHERE employees.title = 'Sales Support Agent'
+GROUP BY employees.FirstName;
+
+--14. Which sales agent made the most in sales in 2009?
+SELECT employees.FirstName, employees.LastName, SUM(invoices.total) AS 'Total Sales'
+FROM chinook.employees
+JOIN chinook.customers
+ON customers.SupportRepId = employees.EmployeeId
+JOIN chinook.invoices 
+ON invoices.CustomerId = customers.CustomerId
+WHERE employees.title = 'Sales Support Agent' AND invoices.InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'
+GROUP BY employees.FirstName
+ORDER BY SUM(invoices.total) DESC
+LIMIT 1;
+
+--15. Which tracks are in Grunge playlist?
