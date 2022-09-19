@@ -36,3 +36,17 @@ LIMIT 10;
 SELECT artist_name, AVG(danceability)
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name; 
+
+--What artist released the longest song?
+SELECT artist_name, MAX(duration_ms)
+FROM BIT_DB.Spotifydata;
+
+--What is the total amount of energy among all of Olivia Rodrigo's songs?
+SELECT SUM(energy) 
+FROM BIT_DB.Spotifydata
+WHERE artist_name = 'Olivia Rodrigo'; 
+
+--Which tracks have a popularity ranking of over 90, but a liveness score of less than 0.1?
+SELECT track_name, liveness
+FROM BIT_DB.Spotifydata
+WHERE popularity > 90 AND liveness < 0.1;
