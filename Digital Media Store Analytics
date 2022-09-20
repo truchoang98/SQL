@@ -97,3 +97,18 @@ ORDER BY SUM(invoices.total) DESC
 LIMIT 1;
 
 --15. Which tracks are in Grunge playlist?
+SELECT tracks.Name
+FROM chinook.tracks
+JOIN chinook.playlist_track
+ON tracks.TrackId = playlist_track.TrackId 
+JOIN chinook.playlists
+ON playlists.PlaylistId = playlist_track.PlaylistId
+WHERE playlists.Name = 'Grunge'; 
+
+--16. Rank the length of tracks by genre. 
+SELECT tracks.Name, genres.Name, tracks.Milliseconds, 
+ROW_NUMBER() OVER 
+(ORDER BY tracks.Milliseconds DESC) AS Tracks_Length_Ranking
+FROM chinook.tracks
+JOIN chinook.genres
+ON tracks.GenreId = genres.GenreId; 
