@@ -1,0 +1,18 @@
+--For this project, I downloaded Walmart data from Kaggle. 
+--Link: https://www.kaggle.com/datasets/yasserh/walmart-dataset
+--Then, I created a table in order to insert Walmart data. 
+--Finally, I performed analytics on the data using SQL. 
+
+--Create a table. 
+CREATE TABLE BIT_DB.Walmartsales (
+ID INTEGER PRIMARY KEY AUTOINCREMENT, 
+Store INTEGER NOT NULL,  
+Weekly_Sales INTEGER NOT NULL, 
+Holiday_Flag INTEGER NOT NULL, 
+Temperature INTEGER NOT NULL, 
+Fuel_Price INTEGER NOT NULL, 
+CPI INTEGER NOT NULL, 
+Unemployment INTEGER NOT NULL
+); 
+
+1. 
